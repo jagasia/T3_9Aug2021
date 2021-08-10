@@ -1,0 +1,67 @@
+<input type="text" name="txt" id="" [(ngModel)]="txt" >
+<input type="button" value="Check" (click)="fn1()">
+
+<form [formGroup]="productForm" class="container-fluid">
+    Id: 
+    <div [ngClass]="{'has-error':f.id.errors && f.id.touched}">
+        <input type="text" name="" id="" formControlName="id" class="form-control">
+        <div *ngIf="f.id.errors && f.id.touched" class="alert-danger">
+            Id cannot be blank
+        </div>
+    </div>
+    Name: 
+    <div [ngClass]="{'has-error':f.name.errors && f.name.touched}">
+        <input type="text" name="" id="" formControlName="name" class="form-control">
+        <div *ngIf="f.name.errors?.minlength && (f.name.touched || f.name.dirty)" class="alert-danger">
+            Name must be atleast 5 characters
+        </div>
+        <div *ngIf="f.name.errors?.required && (f.name.touched || f.name.dirty)" class="alert-danger">
+            Name cannot be blank
+        </div>
+    </div>
+    Price: 
+    <div [ngClass]="{'has-error':f.price.errors && (f.price.touched || f.price.dirty)}">
+        <input type="text" name="" id="" formControlName="price" class="form-control">
+        <div *ngIf="f.price.errors?.required && f.price.touched" class="alert-danger">
+            Price cannot be blank
+        </div>
+        <div *ngIf="f.price.errors?.min && f.price.touched" class="alert-danger">
+            Price cannot be less than 1
+        </div>
+        <div *ngIf="f.price.errors?.max && (f.price.touched || f.price.dirty)" class="alert-danger">
+            Price cannot be more than 100
+        </div>
+        <div *ngIf="f.price.errors?.pattern && (f.price.touched || f.price.dirty)" class="alert-danger">
+            Please enter a valid price only
+        </div>
+    </div>
+    Expiry Date:
+    <div>
+        <input type="date" name="" id="" formControlName="expiryDate" class="form-control">
+    </div>
+    <br>
+    <input type="button" value="Add" class="btn btn-success" [ngClass]="{'disabled':!productForm.valid}" > &nbsp;
+    <input type="button" value="Modify" class="btn btn-warning" [ngClass]="{'disabled':!productForm.valid}"  > &nbsp;
+    <input type="button" value="Delete" class="btn btn-danger" [ngClass]="{'disabled':!productForm.valid}" > 
+    
+</form>
+<br>
+{{ 'abcdefgh' }}
+<br>
+{{ txt | jag }}
+<br>
+{{productForm.value | json}}
+
+<br>
+{{ 'rama' | uppercase}}
+<br>
+{{ 'rama krishna' | titlecase}}
+<br>
+{{ '1234.5678' | number:'0.1-2'}}
+<br>
+{{ dob }}
+<br>
+{{ dob | date:'short' }}
+<br>
+{{ dob | date:'dd-MMM-yyyy' }}
+<br>
